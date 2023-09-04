@@ -15,6 +15,7 @@ class FestivalsController extends AbstractController
     {
         $query = $festivalsRepository->createQueryBuilder('f')
             ->setMaxResults(3)
+            ->orderBy('f.id', 'DESC')
             ->getQuery();
 
         $festivals = $query->getResult();
