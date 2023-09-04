@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FestivalsController!{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12">
+            <h2>Festivals</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for festival in festivals %}
+            <div class="col-4">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ festival.affiche == 'images/affiche.png' ? asset(festival.affiche) : festival.affiche }}" class="img-fluid rounded-start">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ festival.nom }}</h5>
+                                <p class="card-text">
+                                    {{ festival.artistes|length > 0 ? "Artiste" : "" }}{{ festival.artistes|length > 1 ? "s" : "" }} <br>
+                                    {% for artiste in festival.artistes %}
+                                        {{ artiste.nom }}{{ not loop.last ? "," : "" }}
+                                    {% endfor %}
+                                </p>
+                                <p class="card-text"><small class="text-body-secondary">Le {{ festival.date|date('d/m/Y H:i') }} à {{ festival.lieu }} en {{ festival.departements.nom }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h4 class="text-center">Liste des départements</h4>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="list-group">
+                {% for departement in departements %}
+                    <a href="{{ path('app_departement_get', { id: departement.id }) }}" class="list-group-item list-group-item-action" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ departement.nom }}</h5>
+                        </div>
+                        <p class="mb-1">Nouvelle Aquitaine</p>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+{% endblock %}

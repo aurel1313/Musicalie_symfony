@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FestivalsController!{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12">
+            <h2>Festival {{ festival.nom }}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ festival.affiche == 'images/affiche.png' ? asset(festival.affiche) : festival.affiche }}" class="img-fluid rounded-start" width="550">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ festival.nom }}</h5>
+                            <p class="card-text">
+                                {{ festival.artistes|length > 0 ? "Artiste" : "" }}{{ festival.artistes|length > 1 ? "s" : "" }} <br>
+                                {% for artiste in festival.artistes %}
+                                    {{ artiste.nom }}{{ not loop.last ? "," : "" }}
+                                {% endfor %}
+                            </p>
+                            <p class="card-text"><small class="text-body-secondary">Le {{ festival.date|date('d/m/Y H:i') }} à {{ festival.lieu }} en {{ festival.departements.nom }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+
+
+
+{% endblock %}

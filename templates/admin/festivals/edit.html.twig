@@ -1,0 +1,24 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block body %}
+
+    <h2 class="text-center">{{ app.request.get('_route') == "app_admin_festival_update" ? "Modifier" : "Ajouter" }} un festival</h2>
+    {{ form_start(form) }}
+
+    {{ form_row(form.nom) }}
+
+    {{ form_row(form.Date) }}
+
+    {{ form_row(form.affiche) }}
+
+    {{ form_row(form.lieu) }}
+
+    {{ form_row(form.departements) }}
+
+    {{ form_row(form.artistes) }}
+
+
+    <button type="submit" class="btn btn-success">{{ app.request.get('_route') == "app_admin_festival_update" ? "Modifier" : "Ajouter" }}</button>
+    {{ form_end(form) }}
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block body %}
+
+    <h2 class="text-center">{{ app.request.get('_route') == "app_admin_departement_update" ? "Modifier" : "Ajouter" }} un département</h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-success">{{ app.request.get('_route') == "app_admin_departement_update" ? "Modifier" : "Ajouter" }}</button>
+    {{ form_end(form) }}
+
+{% endblock %}

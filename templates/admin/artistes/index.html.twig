@@ -1,0 +1,38 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Hello AdminArtistesController!{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12">
+            <a href="{{ path('app_admin_artiste_create') }}" class="btn btn-primary">Ajouter</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nom de scène</th>
+                        <th>Style musicale</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for artiste in artistes %}
+                        <tr>
+                            <td>{{ artiste.nom }}</td>
+                            <td>{{ artiste.styleMusical }}</td>
+                            <td>
+                                <a href="{{ path('app_admin_artiste_update', { id: artiste.id }) }}" class="btn btn-primary">Modifier</a>
+                                <a onclick="confirm('Etes vous sur de vouloir supprimer {{ artiste.nom }} ?') ? href='{{ path('app_admin_artiste_delete', { id: artiste.id }) }}': '';" class="btn btn-danger">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
